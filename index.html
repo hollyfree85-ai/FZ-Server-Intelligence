@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>FZ Server Intelligence V1.2.5</title>
+<title>FZ Server Intelligence V1.2.6</title>
 <link rel="manifest" href="manifest.webmanifest?v=124"><meta name="theme-color" content="#f4fbff"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="FZ Intelligence"><link rel="apple-touch-icon" href="icon-192.png">
 <style>
 :root{--ink:#11233a;--muted:#5f7388;--line:#cfe3ef;--paper:#f8fcff;--cyan:#16c8e5;--blue:#337cf4;--violet:#8a62f6;--pink:#f05ab8;--gold:#f3b43c;--green:#39bd82;--red:#ec5f72;--shadow:0 16px 34px rgba(54,108,154,.16),0 4px 0 rgba(255,255,255,.9) inset;--deep:0 22px 46px rgba(66,105,150,.18),0 3px 0 rgba(255,255,255,.96) inset,0 -2px 0 rgba(107,164,201,.12) inset}
@@ -35,7 +35,7 @@ body{font-size:17px}.top{padding:16px 20px}.topin{gap:13px}.brand{font-size:21px
 @media(max-width:520px){body{font-size:16px}.wrap{padding:10px}.top{padding-left:9px;padding-right:9px}.topin .btn{font-size:14px;padding:11px 10px}.brand{font-size:19px}.pill{font-size:13px;padding:9px 11px}.hero h1{font-size:32px}.hero p{font-size:16px}.card{padding:17px;border-radius:20px}.field label{font-size:12px}.field input,.field select{font-size:16px}.seg button{font-size:14px}.kpi{padding:16px 15px}.kpi b{font-size:28px}.kpi span,.kpi small{font-size:12px}.heroInsight .bigName{font-size:30px}.heroInsight p{font-size:15px}.badge{font-size:11px}.insight b{font-size:15px}.insight span,.recommend{font-size:14px}.section-title h2{font-size:21px}.barrow{grid-template-columns:112px minmax(100px,1fr) 62px}.barrow>span,.barrow>b{font-size:12px}.dim span{font-size:11px}.dim b{font-size:23px}.dim small{font-size:12px}.loginbox{padding:25px 21px}.loginbox h1{font-size:38px}.loginbox p{font-size:16px}.loginbox label{font-size:12px}.loginbox input{font-size:18px}.msg{font-size:14px}th,td{font-size:13px;padding:11px 9px}th{font-size:10px}}
 
 
-/* V1.2.5 EXTRA-LARGE READABLE OWNER UI */
+/* V1.2.6 EXTRA-LARGE READABLE OWNER UI */
 body{font-size:19px;line-height:1.45}
 .top{padding:18px 22px}.topin{gap:15px}.brand{font-size:24px}.pill{font-size:16px;padding:11px 15px}.btn{font-size:17px;padding:14px 19px;min-height:52px}
 .wrap{max-width:1540px;padding:26px 22px 44px}.card{padding:27px;border-radius:28px}.hero h1{font-size:48px}.hero p{font-size:20px}
@@ -52,18 +52,18 @@ body{font-size:19px;line-height:1.45}
 
 </style>
 </head><body>
-<div id="loginView" class="login"><div class="card loginbox"><h1>FZ <span style="background:linear-gradient(90deg,var(--cyan),var(--blue),var(--violet));-webkit-background-clip:text;color:transparent">Server Intelligence</span></h1><p>Owner Analytics • Quick Board + Just Tip</p><label>Owner username</label><input id="user" autocomplete="username"><label>Password</label><input id="pass" type="password" autocomplete="current-password"><button id="loginBtn" class="btn primary" style="width:100%;padding:13px">OWNER LOGIN</button><button id="loginInstallBtn" class="btn hidden" style="width:100%;margin-top:8px">INSTALL APP</button><button id="resetCacheBtn" class="btn" style="width:100%;margin-top:8px">RESET APP CACHE</button><div id="loginMsg" class="msg"></div><div class="loginBuild">V1.2.5 • Executive Summary PDF • Simple Language • EXTRA LARGE UI • Responsive PWA</div></div></div>
+<div id="loginView" class="login"><div class="card loginbox"><h1>FZ <span style="background:linear-gradient(90deg,var(--cyan),var(--blue),var(--violet));-webkit-background-clip:text;color:transparent">Server Intelligence</span></h1><p>Owner Analytics • Quick Board + Just Tip</p><label>Owner username</label><input id="user" autocomplete="username"><label>Password</label><input id="pass" type="password" autocomplete="current-password"><button id="loginBtn" class="btn primary" style="width:100%;padding:13px">OWNER LOGIN</button><button id="loginInstallBtn" class="btn hidden" style="width:100%;margin-top:8px">INSTALL APP</button><button id="resetCacheBtn" class="btn" style="width:100%;margin-top:8px">RESET APP CACHE</button><div id="loginMsg" class="msg"></div><div class="loginBuild">V1.2.6 • Executive Summary PDF • Simple Language • EXTRA LARGE UI • Responsive PWA</div></div></div>
 <div id="app" class="hidden">
-<div class="top"><div class="topin"><div class="brand">FZ <b>SERVER INTELLIGENCE V1.2.5</b></div><span id="ownerName" class="pill">OWNER</span><div class="spacer"></div><button class="btn hidden" id="installBtn">Install App</button><button class="btn" id="aliasBtn">Identity Sync</button><button class="btn primary" id="pdfBtn">3-Page PDF</button><button class="btn red" id="logoutBtn">Logout</button></div></div>
+<div class="top"><div class="topin"><div class="brand">FZ <b>SERVER INTELLIGENCE V1.2.6</b></div><span id="ownerName" class="pill">OWNER</span><div class="spacer"></div><button class="btn hidden" id="installBtn">Install App</button><button class="btn" id="aliasBtn">Identity Sync</button><button class="btn primary" id="pdfBtn">3-Page PDF</button><button class="btn red" id="logoutBtn">Logout</button></div></div>
 <div class="wrap">
 <section class="hero"><div class="card"><h1>Owner Server Performance</h1><p>Easy-to-read server summary • work speed • table distribution • sales • tips • problems • solutions</p></div><div class="card syncbox"><span class="pill"><i class="dot"></i>BOARD <b id="boardStatus">SYNCING</b></span><span class="pill"><i class="dot"></i>TIP <b id="tipStatus">SYNCING</b></span><span class="pill">Updated <b id="updatedAt">—</b></span></div></section>
 <section class="card controls"><div class="seg"><button data-mode="daily" class="on">Daily</button><button data-mode="weekly">Weekly</button><button data-mode="monthly">Monthly</button><button data-mode="custom">Custom</button></div><div class="field"><label>From</label><input id="from" type="date"></div><div class="field"><label>To</label><input id="to" type="date"></div><div class="field"><label>Shift / Period</label><select id="shift"><option value="ALL">All</option><option>AM</option><option>PM</option></select></div><button class="btn primary" id="refreshBtn">REFRESH</button></section>
 <div id="kpis" class="kpis"></div>
 <div class="tabs"><button class="btn on" data-tab="overview">Summary</button><button class="btn" data-tab="ranking">Ranking</button><button class="btn" data-tab="rotation">Tables & Speed</button><button class="btn" data-tab="finance">Sales & Tips</button><button class="btn" data-tab="tables">Tables</button></div>
-<div id="content"></div><div class="foot">FZ Server Intelligence V1.2.5 • Easy-to-read Owner server analysis • Board + Tip data.</div>
+<div id="content"></div><div class="foot">FZ Server Intelligence V1.2.6 • Easy-to-read Owner server analysis • Board + Tip data.</div>
 </div></div>
 <div id="modal" class="modal hidden"><div class="modalbox"><div class="modalhead"><h2 id="modalTitle">Detail</h2><button id="modalClose" class="btn close">Close</button></div><div id="modalBody"></div></div></div>
 <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.8.4/dist/jspdf.plugin.autotable.min.js"></script>
-<script type="module" src="app.js?v=125"></script>
+<script type="module" src="app.js?v=126"></script>
 </body></html>

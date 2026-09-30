@@ -19,9 +19,20 @@ const DEFAULT_ID={
  'a.j.':{canonical:'Ariana Garner',active:true},'a.j':{canonical:'Ariana Garner',active:true},'aj':{canonical:'Ariana Garner',active:true},
  'ariana garner':{canonical:'Ariana Garner',active:true},'ariana graner':{canonical:'Ariana Garner',active:true},
  'alaina montalvo':{canonical:'Alainna Montalvo',active:true},'alainna montalvo':{canonical:'Alainna Montalvo',active:true},'alainna':{canonical:'Alainna Montalvo',active:true},
+ 'angela server':{canonical:'Angela Server',active:true},'angela bar':{canonical:'Angela Server',active:true},'angela gizzard':{canonical:'Angela Server',active:true},'angela grizzad':{canonical:'Angela Server',active:true},
+ 'caitlin dillon':{canonical:'Caitlin Dillon',active:true},'caitlin bar':{canonical:'Caitlin Dillon',active:true},
+ 'mia':{canonical:'Mia Gibson',active:true},'mia gibson':{canonical:'Mia Gibson',active:true},
+ 'mia burress':{canonical:'Mia Burress',active:true},
  'aida':{canonical:'Aida Gonzales',active:false},'aida gonzales':{canonical:'Aida Gonzales',active:false}
 };
-function loadIdentity(){let stored={};try{stored=JSON.parse(localStorage.getItem('fzsi_identity_v12')||localStorage.getItem('fzsi_identity_v11')||localStorage.getItem('fzsi_identity_v1')||'{}')||{}}catch(e){}const merged={...DEFAULT_ID,...stored};for(const k of ['a.j.','a.j','aj','ariana garner','ariana graner'])merged[k]={canonical:'Ariana Garner',active:true};return merged}
+const LOCKED_IDENTITY_GROUPS=[
+ {canonical:'Ariana Garner',aliases:['a.j.','a.j','aj','ariana garner','ariana graner']},
+ {canonical:'Angela Server',aliases:['angela server','angela bar','angela gizzard','angela grizzad']},
+ {canonical:'Caitlin Dillon',aliases:['caitlin dillon','caitlin bar']},
+ {canonical:'Mia Gibson',aliases:['mia','mia gibson']},
+ {canonical:'Mia Burress',aliases:['mia burress']}
+];
+function loadIdentity(){let stored={};try{stored=JSON.parse(localStorage.getItem('fzsi_identity_v12')||localStorage.getItem('fzsi_identity_v11')||localStorage.getItem('fzsi_identity_v1')||'{}')||{}}catch(e){}const merged={...DEFAULT_ID,...stored};for(const g of LOCKED_IDENTITY_GROUPS){for(const k of g.aliases)merged[k]={canonical:g.canonical,active:true};merged[idKey(g.canonical)]={canonical:g.canonical,active:true}}return merged}
 let identity=loadIdentity();
 function canonical(s){const n=normName(s);return identity[idKey(n)]?.canonical||n||'Unknown'}
 function isActiveName(s){const x=identity[idKey(s)]||identity[idKey(canonical(s))];return x?.active!==false}
@@ -91,7 +102,7 @@ function buildRows(){
  for(const r of state.tipRoster){if(rosterBoth.has(idKey(r.server)))get(r.server,{source:r.source,raw:r.rawServer,scheduled:true,date:r.date})}
  for(const e of state.board){const x=get(e.server,{source:'BOARD',raw:e.rawServer,date:e.date});x.events.push(e);x.tables++;x.guests+=num(e.people);x.rotation+=num(e.rotationSlots);x.days.add(e.date);if(e.shift==='AM')x.am++;if(e.shift==='PM')x.pm++}
  const boardIds=new Set([...state.board.map(e=>e.server),...state.boardRoster.map(r=>r.server)]);
- for(const r of state.tips){const n=reportName(r);if(!n)continue;const c=canonical(n),pos=reportPosition(r);if(pos&&!/server/i.test(pos))continue;if(!pos&&!boardIds.has(c))continue;const bucket=shiftBucket(r);if(state.shift!=='ALL'&&bucket!=='ALL'&&bucket!==state.shift)continue;if(state.shift!=='ALL'&&bucket==='ALL')continue;const x=get(c,{source:'TIP REPORT',raw:n,date:r.date});x.reports.push(r);x.days.add(r.date);x.hours+=reportHours(r);x.sales+=reportSales(r);x.paidTip+=num(r.paidTip);x.cashTip+=num(r.cashTip);x.tipIncome+=reportTip(r);x.payout+=reportPayout(r);x.busser+=reportBusser(r);x.barOut+=reportBarOut(r);x.barIn+=reportBarIn(r)}
+ for(const r of state.tips){const n=reportName(r);if(!n)continue;const c=canonical(n),pos=reportPosition(r),rawKey=idKey(n);if(pos&&!/server/i.test(pos))continue;/* Identity may be shared across Server + Bar names, but bartender work must never inflate Server performance. If an old report has no explicit role, a name ending in Bar is treated as bartender-only. */if(!pos&&/\bbar$/.test(rawKey))continue;if(!pos&&!boardIds.has(c))continue;const bucket=shiftBucket(r);if(state.shift!=='ALL'&&bucket!=='ALL'&&bucket!==state.shift)continue;if(state.shift!=='ALL'&&bucket==='ALL')continue;const x=get(c,{source:'TIP REPORT',raw:n,date:r.date});x.reports.push(r);x.days.add(r.date);x.hours+=reportHours(r);x.sales+=reportSales(r);x.paidTip+=num(r.paidTip);x.cashTip+=num(r.cashTip);x.tipIncome+=reportTip(r);x.payout+=reportPayout(r);x.busser+=reportBusser(r);x.barOut+=reportBarOut(r);x.barIn+=reportBarIn(r)}
  let rows=[...map.values()];
  rows.forEach(x=>{x.daysCount=x.days.size;x.avgParty=x.tables?x.guests/x.tables:0;x.salesPerGuest=x.guests?x.sales/x.guests:0;x.salesPerTable=x.tables?x.sales/x.tables:0;x.tablesPerHour=x.hours?x.tables/x.hours:0;x.guestsPerHour=x.hours?x.guests/x.hours:0;x.salesPerHour=x.hours?x.sales/x.hours:0;x.tipPerHour=x.hours?x.tipIncome/x.hours:0;x.tipPerGuest=x.guests?x.tipIncome/x.guests:0;x.rotationPerHour=x.hours?x.rotation/x.hours:0;x.guestsPerRotation=x.rotation?x.guests/x.rotation:0;x.tablesPerRotation=x.rotation?x.tables/x.rotation:0;x.medianSeatGap=medianGap(x.events);x.hasBoardActivity=!!(x.tables||x.guests);x.hasTipReport=x.reports.length>0;x.dataComplete=!!(x.hasBoardActivity&&x.hasTipReport&&x.hours>0&&x.sales>0);x.dataQuality=(x.hasBoardActivity?50:0)+(x.hasTipReport&&x.hours>0?25:0)+(x.hasTipReport&&x.sales>0?25:0);x.hasPerformance=x.hasBoardActivity||x.hasTipReport});
  const eligible=rows.filter(x=>x.dataComplete);
