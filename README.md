@@ -1,4 +1,4 @@
-# FZ Server Intelligence V1 — Owner Analytics
+# FZ Server Intelligence V1.1 — Owner Analytics
 
 Source baselines:
 - FZ Quick Board R3M.8.30 — Owner Table Capacity Setup
@@ -42,3 +42,11 @@ Upload the contents of the ZIP to a GitHub Pages repository root and enable Page
 
 ## Safety
 This app does not write to Quick Board or hourlyReports. Alias settings are stored locally in the browser for V1 and do not rewrite either source app.
+
+
+## V1.1 roster/identity repair
+- Board row and Team Day roster members appear even before their first seating.
+- Tip Employee Sheet team/draft roster is read in addition to finalized hourlyReports when server role is known.
+- A.J. / AJ / Ariana Garner / Ariana Graner map to canonical **Ariana Garner**.
+- Roster-only employees show without a performance rank until measurable activity exists.
+- Non-server Tip reports are excluded from server performance totals.
