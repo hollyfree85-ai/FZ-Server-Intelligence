@@ -1,52 +1,35 @@
-# FZ Server Intelligence V1.1 — Owner Analytics
+# FZ Server Intelligence V1.2 — Owner Analytics
 
 Source baselines:
-- FZ Quick Board R3M.8.30 — Owner Table Capacity Setup
-- Fred Zhang Just Tip ES1.8.5 — Host Report Pool Summary
+- Quick Board: R3M.8.30 Table Capacity Setup
+- Just Tip: ES1.8.5 Host Report Pool Summary
 
-## Purpose
-Third, read-only Owner analytics app. Combines Quick Board seating/rotation data with Just Tip financial/hour data.
+## V1.2 highlights
+- Bright futuristic / layered “5D” UI with larger text and simplified Owner workflow.
+- Daily, weekly, monthly and custom analytics.
+- Server ranking only when Board activity + final Tip/hours data are complete.
+- New scoring model: Overall = 40% Pace + 40% Sales Efficiency + 20% Tip Efficiency.
+- Pace combines tables/hour, guests/hour and median seating gap.
+- Sales efficiency combines sales/hour, sales/guest and sales/table.
+- Tip efficiency combines tip/hour and tip/guest.
+- Rotation is treated as management context, not as a punishment in the performance score.
+- Weakest server analysis includes root causes and management recommendations.
+- Rotation fairness compares guest-share distribution with rotation-load distribution.
+- 3-page English PDF and 3-page Bahasa Indonesia PDF with layered 5D-style charts.
+- Identity Sync keeps aliases together: A.J./AJ/Ariana Garner; Alaina/Alainna; Aida/Aida Gonzales (inactive by default).
 
-## Main features
-- Owner-only authentication using the existing Just Tip Firebase Auth + users profile role check.
-- Daily / weekly / monthly / custom date range.
-- AM / PM / All filter.
-- Board metrics: tables, guests, section, table, seating timestamp, rotation slots, pace, table utilization.
-- Tip metrics: hours, sales, paid tip, cash tip, total tip income, busser tip out, bar tip out, bar tip received, final paid out.
-- Rankings: Overall Performance Index, sales, guests, tables, sales/hour, guests/hour, tables/hour, sales/guest, tip/hour.
-- Detailed per-server seating history.
-- Employee Identity Sync aliases, including defaults:
-  - A.J. = Ariana Garner
-  - Alaina Montalvo / Alainna Montalvo = Alainna Montalvo
-  - Aida / Aida Gonzales = Aida Gonzales (inactive by default)
-- Employee can be inactive without deleting historical analytics.
-- PDF export in English or Bahasa Indonesia.
-- PWA install support.
-- Board auto refresh every 30 seconds; Tip data uses Firestore realtime listener.
+## V1.2 roster deletion fix
+Roster-only names are shown only when the current Board roster and Tip team agree on the employee for the selected date. Old Tip drafts no longer resurrect deleted employees. Employees with actual Board activity or final Tip reports remain visible for historical accuracy.
 
-## Overall Performance Index
-Period-relative percentile index:
-- 30% Sales / Hour
-- 22% Guests / Hour
-- 18% Tables / Hour
-- 15% Sales / Guest
-- 15% Tip Income / Hour
+## Important metric note
+“Pace” means seating throughput (tables/hour, guests/hour, interval between seating events). It does **not** measure how long a server takes to finish table service because Quick Board does not record table-completion timestamps.
 
-This is a management comparison index, not a disciplinary score.
+## Deploy
+Upload these files to the root of the existing GitHub Pages repository and commit:
+- index.html
+- app.js
+- manifest.webmanifest
+- sw.js
+- README.md
 
-## Pace definition
-"Speed/Pace" means seating throughput (tables/hour, guests/hour, median time between seating events). It is NOT table-service duration because Quick Board does not record checkout/completion timestamps.
-
-## Deployment
-Upload the contents of the ZIP to a GitHub Pages repository root and enable Pages.
-
-## Safety
-This app does not write to Quick Board or hourlyReports. Alias settings are stored locally in the browser for V1 and do not rewrite either source app.
-
-
-## V1.1 roster/identity repair
-- Board row and Team Day roster members appear even before their first seating.
-- Tip Employee Sheet team/draft roster is read in addition to finalized hourlyReports when server role is known.
-- A.J. / AJ / Ariana Garner / Ariana Graner map to canonical **Ariana Garner**.
-- Roster-only employees show without a performance rank until measurable activity exists.
-- Non-server Tip reports are excluded from server performance totals.
+Then refresh the GitHub Pages site with Ctrl+F5 (or clear site cache once) so V1.2 replaces the older service-worker cache.
