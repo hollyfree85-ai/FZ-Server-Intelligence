@@ -1,4 +1,4 @@
-# FZ Server Intelligence V1.2.13 — Bartender Financial Inclusion
+# FZ Server Intelligence V1.2.14 — Bar Tables Count + Bartender Table Activity
 
 Built from V1.2.12 Board-Linked Money Fix.
 
@@ -12,3 +12,11 @@ Built from V1.2.12 Board-Linked Money Fix.
 
 ## Fairness rule
 A bartender can have strong sales without serving floor tables. The app shows the bartender's real money data but does not invent a Server speed/rotation score.
+
+
+## V1.2.14 — Bar tables are real tables
+- Bar 1 through Bar 12 seating events from Quick Board count as Tables Served and Customers Served.
+- Bar seating contributes to same-time Work Flow, table/customer share, unique/reused table counts, and table history.
+- A bartender with Bar-table seating is not treated as MONEY ONLY; they have real table activity.
+- Bartender money remains role-aware and is not double-counted.
+- Table occupied/Ready duration is still never used for scoring.
