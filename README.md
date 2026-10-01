@@ -1,6 +1,6 @@
-# FZ Server Intelligence V1.2.10 — Shift Closed Board Status Fix
+# FZ Server Intelligence V1.2.11 — Shift Closed Board Status Fix
 
-## V1.2.10 — Shift Closed / 0 Active Server Fix
+## V1.2.11 — Shift Closed / 0 Active Server Fix
 - A successful Quick Board sync with **0 active servers** is no longer reported as `BOARD ERROR`.
 - For the current Daily view, if Board data/archive/team evidence exists and all servers are cut, the status is **BOARD SHIFT CLOSED**.
 - Historical seating events continue to load from `analyticsV1` after the live rotation is empty or the shift has been cleared.
@@ -55,3 +55,10 @@ Authoritative base: **V1.2.8 — Full Aspect Ranking + All Summary**.
 
 Source data remains Quick Board R3M.8.30 + Just Tip ES1.8.5.
 PWA cache namespace: `fz-server-intelligence-v1210`.
+
+
+## V1.2.11 Hotfix
+- Restored missing `renderContent()` router accidentally omitted from V1.2.9/V1.2.10 packaging.
+- Summary, All Rankings, Tables & Flow, Sales & Tips, Tables, and Cara Hitung Nilai render again.
+- Keeps V1.2.9 same-time scoring and V1.2.10 SHIFT CLOSED board-status fix.
+- Sales & Tips tab follows the current no-per-hour scoring model.
