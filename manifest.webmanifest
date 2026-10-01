@@ -2,7 +2,7 @@
   "id":"./",
   "name":"FZ Server Intelligence",
   "short_name":"FZ Intelligence",
-  "description":"Easy-to-read Owner server performance analytics for Quick Board and Just Tip.",
+  "description":"Owner server analytics with fair minimum-standard ranking, coaching guidance, Quick Board and Just Tip sync.",
   "start_url":"./",
   "scope":"./",
   "display":"standalone",
