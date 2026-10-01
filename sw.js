@@ -1,5 +1,5 @@
-const CACHE='fz-server-intelligence-v128';
-const CORE=['./','./index.html','./app.js?v=128','./manifest.webmanifest?v=128','./icon-192.png','./icon-512.png'];
+const CACHE='fz-server-intelligence-v129';
+const CORE=['./','./index.html','./app.js?v=129','./manifest.webmanifest?v=129','./icon-192.png','./icon-512.png'];
 self.addEventListener('install',e=>{self.skipWaiting();e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)).catch(()=>{}))});
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('fz-server-intelligence')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
 self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;const u=new URL(e.request.url);if(u.origin!==self.location.origin)return;if(e.request.mode==='navigate'){e.respondWith(fetch(e.request,{cache:'no-store'}).then(r=>{const x=r.clone();caches.open(CACHE).then(c=>c.put('./index.html',x)).catch(()=>{});return r}).catch(()=>caches.match('./index.html')));return}e.respondWith(fetch(e.request,{cache:'no-store'}).then(r=>{if(r.ok){const x=r.clone();caches.open(CACHE).then(c=>c.put(e.request,x)).catch(()=>{})}return r}).catch(()=>caches.match(e.request)))});
