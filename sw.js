@@ -1,4 +1,4 @@
-const CACHE='fz-server-intelligence-v1215';
+const CACHE='fz-server-intelligence-v1216';
 const CORE=['./','./index.html','./app.js?v=1215','./manifest.webmanifest?v=1215','./icon-192.png','./icon-512.png'];
 self.addEventListener('install',e=>{self.skipWaiting();e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)).catch(()=>{}))});
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('fz-server-intelligence')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));

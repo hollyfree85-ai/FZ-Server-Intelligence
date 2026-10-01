@@ -1,4 +1,4 @@
-# FZ Server Intelligence V1.2.15 — Unified Identity Money + Bartender Fairness
+# FZ Server Intelligence V1.2.16 — Unified Identity Money + Bartender Fairness
 
 Built directly from V1.2.14 Bar Tables Count + Bartender Table Activity.
 
@@ -22,10 +22,20 @@ A bartender can have strong sales without serving floor tables. The app shows th
 - Table occupied/Ready duration is still never used for scoring.
 
 
-## V1.2.15 — Unified identity money + bartender fairness
+## V1.2.16 — Unified identity money + bartender fairness
 - Angela Server / Angela Bar / Angela Gizzard / Angela Grizzad are one canonical employee identity.
 - When Quick Board records real Bar-table seating for a dual-role employee, Bar-role sales/tips are included with Server-role money in that person's performance numerator. The UI still shows the Server-vs-Bar breakdown for audit.
 - This fixes the unfair case where Board tables/customers were already merged under one identity but Bar money was excluded from the score.
 - In formations with 9 or more active servers, bartender Work Flow is compared against the Bar-table pool, while floor servers are compared against the floor-table pool. Bar 1–Bar 12 still count as real tables.
 - In smaller formations, bartenders continue to be compared with the same-time team because they can serve both Bar and floor.
 - Pure money-only bartender records remain excluded from table/rotation scoring only when Quick Board has no seating activity.
+
+
+## V1.2.16 — Full identity money merge + skip-neutral fairness
+- Angela Server / Angela Bar / Angela Gizzard / Angela Grizzad (plus role variants) are one canonical employee. All linked sales, tips, and payout are combined for performance whenever the canonical employee has real Quick Board seating activity.
+- Caitlin Dillon / Caitlin Bar (plus Caitlin Dion / Caitlin Bartender variants) are one canonical employee with the same full-money merge rule.
+- Server-vs-Bar buckets remain visible for audit; Server detail also shows a Money by Linked Account table.
+- Manual SKIP and BAR auto-skip are never performance penalties. Live skip cells reduce expected table opportunity instead of reducing the employee score.
+- Historical PM bartender auto-skip is inferred from the known rule: every 2 real Bar tables creates 1 auto-skip, so that mechanic is neutralized even when old per-server skip cells are unavailable.
+- CHECK ROTATION FIRST is renamed CHECK TABLE DISTRIBUTION. Manager guidance focuses on section/table distribution, not skip count.
+- Bar 1–Bar 12 remain real tables.
