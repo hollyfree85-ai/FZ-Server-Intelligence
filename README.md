@@ -1,6 +1,6 @@
-# FZ Server Intelligence V1.2.11 — Shift Closed Board Status Fix
+# FZ Server Intelligence V1.2.12 — Shift Closed Board Status Fix
 
-## V1.2.11 — Shift Closed / 0 Active Server Fix
+## V1.2.12 — Shift Closed / 0 Active Server Fix
 - A successful Quick Board sync with **0 active servers** is no longer reported as `BOARD ERROR`.
 - For the current Daily view, if Board data/archive/team evidence exists and all servers are cut, the status is **BOARD SHIFT CLOSED**.
 - Historical seating events continue to load from `analyticsV1` after the live rotation is empty or the shift has been cleared.
@@ -57,8 +57,16 @@ Source data remains Quick Board R3M.8.30 + Just Tip ES1.8.5.
 PWA cache namespace: `fz-server-intelligence-v1210`.
 
 
-## V1.2.11 Hotfix
+## V1.2.12 Hotfix
 - Restored missing `renderContent()` router accidentally omitted from V1.2.9/V1.2.10 packaging.
 - Summary, All Rankings, Tables & Flow, Sales & Tips, Tables, and Cara Hitung Nilai render again.
 - Keeps V1.2.9 same-time scoring and V1.2.10 SHIFT CLOSED board-status fix.
 - Sales & Tips tab follows the current no-per-hour scoring model.
+
+
+## V1.2.12 — Board-Linked Money Fix
+- Fix: Tip reports marked Bartender are no longer discarded when Quick Board proves that the same person actually served tables on that work date.
+- Explicit role accounts ending in `Bar` (for example Angela Bar / Caitlin Bar) remain excluded from Server financial scoring.
+- If a true Server financial report exists for the same canonical employee and work date, it takes priority over a non-Server report to prevent double-counting.
+- This fixes cases such as Sarah Kibler showing real Board tables/customers but $0 Sales / $0 Tips in Server Intelligence.
+- Scoring, Shared Active Windows, SHIFT CLOSED, identities, PDF, login and PWA remain unchanged.
