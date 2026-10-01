@@ -1,4 +1,12 @@
-# FZ Server Intelligence V1.2.9 — Shared Active Windows + Score Guide
+# FZ Server Intelligence V1.2.10 — Shift Closed Board Status Fix
+
+## V1.2.10 — Shift Closed / 0 Active Server Fix
+- A successful Quick Board sync with **0 active servers** is no longer reported as `BOARD ERROR`.
+- For the current Daily view, if Board data/archive/team evidence exists and all servers are cut, the status is **BOARD SHIFT CLOSED**.
+- Historical seating events continue to load from `analyticsV1` after the live rotation is empty or the shift has been cleared.
+- Board connection errors are now separated from analytics/render errors, so a UI calculation issue cannot falsely label the Quick Board connection as broken.
+- No scoring, identity, PDF, login, PWA, or V1.2.9 shared-active-window rules were changed.
+
 
 Authoritative base: **V1.2.8 — Full Aspect Ranking + All Summary**.
 
@@ -46,4 +54,4 @@ Authoritative base: **V1.2.8 — Full Aspect Ranking + All Summary**.
 - Bartender-role data remains role-aware and does not leak into Server performance.
 
 Source data remains Quick Board R3M.8.30 + Just Tip ES1.8.5.
-PWA cache namespace: `fz-server-intelligence-v129`.
+PWA cache namespace: `fz-server-intelligence-v1210`.
