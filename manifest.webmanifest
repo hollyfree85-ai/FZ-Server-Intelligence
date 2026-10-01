@@ -1,16 +1,26 @@
 {
-  "id":"./",
-  "name":"FZ Server Intelligence",
-  "short_name":"FZ Intelligence",
-  "description":"Owner server analytics with same-time comparison windows, low-traffic protection, all-server rankings, coaching guidance, Quick Board and Just Tip sync.",
-  "start_url":"./",
-  "scope":"./",
-  "display":"standalone",
-  "orientation":"any",
-  "background_color":"#f4fbff",
-  "theme_color":"#f4fbff",
-  "icons":[
-    {"src":"icon-192.png","sizes":"192x192","type":"image/png","purpose":"any maskable"},
-    {"src":"icon-512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}
+  "id": "./",
+  "name": "FZ Server Intelligence",
+  "short_name": "FZ Intelligence",
+  "description": "Owner server and bartender analytics with unified identities, Bar-table counting, same-time fair comparison, role-linked money, low-traffic protection, coaching guidance, Quick Board and Just Tip sync.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f4fbff",
+  "theme_color": "#f4fbff",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
   ]
 }
